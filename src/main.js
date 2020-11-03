@@ -16,6 +16,7 @@ window.axios = require('axios')
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'https://airbnb-tours-api.herokuapp.com/api/v1'
 // axios.defaults.baseURL = 'http://localhost:3000/api/v1'
+Vue.http.options.credentials = true
 
 
 //Css imports
