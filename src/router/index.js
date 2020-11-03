@@ -14,7 +14,7 @@ Vue.use(VueRouter)
 
 const protectedRoute = async (to, from, next) => {
 
-  await store.dispatch('getUser')
+  if (!store.getters.loggedIn) await store.dispatch('getUser')
 
 
   if (!store.getters.loggedIn) next('/login');
@@ -82,8 +82,8 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   // const token = Vue.$cookies.get('jwthandp');
-  
-  await store.dispatch('getUser')
+
+  if (!store.getters.loggedIn) await store.dispatch('getUser')
 
   next()
 
