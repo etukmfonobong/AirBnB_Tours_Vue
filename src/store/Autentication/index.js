@@ -17,10 +17,11 @@ const actions = {
     try {
       const response = await axios.post('/users/login', user)
       commit('UPDATE_USER', 'success')
+      console.log(response)
 
 
     } catch (e) {
-      Vue.$toast.error(e.response.data.message)
+      return Vue.$toast.error(e.response.data.message)
       // commit('UPDATE_USER', e.response.data.message)
     }
   },
@@ -34,6 +35,7 @@ const actions = {
     } catch (e) {
       console.log(e)
       await commit('UPDATE_LOGGED_IN', false)
+      return Vue.$toast.error('failed to get user')
     }
   },
   async logout({commit}) {

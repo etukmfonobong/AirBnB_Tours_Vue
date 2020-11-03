@@ -69,7 +69,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user', "loggedIn"])
   },
   validations: {
     loginForm: {
@@ -100,8 +100,10 @@ export default {
             }).then(async () => {
           if (this.user === 'success') {
             await this.$store.dispatch('getUser')
-            await router.push({name: 'Home'})
-            await this.$toast.success('Login Successful')
+            if (this.loggedIn === true) {
+              await router.push({name: 'Home'})
+              await this.$toast.success('Login Successful')
+            }
           }
           this.loginForm.submitting = false
         })
