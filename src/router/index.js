@@ -13,11 +13,9 @@ import includes from "validator/es/lib/util/includes";
 Vue.use(VueRouter)
 
 const protectedRoute = async (to, from, next) => {
-  const token = Vue.$cookies.get('jwthandp');
 
-  if (token) {
-    await store.dispatch('getUser')
-  }
+  await store.dispatch('getUser')
+
 
   if (!store.getters.loggedIn) next('/login');
   else next();
@@ -40,11 +38,6 @@ const routes = [
     name: 'Login',
     component: Login,
     beforeEnter: async (to, from, next) => {
-      // const token = Vue.$cookies.get('jwthandp');
-      //
-      // if (token) {
-      //   await store.dispatch('getUser')
-      // }
 
       if (store.getters.loggedIn) next('/home');
       else next();
@@ -88,10 +81,10 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  const token = Vue.$cookies.get('jwthandp');
-  if (token) {
-    await store.dispatch('getUser')
-  }
+  // const token = Vue.$cookies.get('jwthandp');
+  
+  await store.dispatch('getUser')
+
   next()
 
 
