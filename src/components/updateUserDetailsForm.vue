@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="form__group form__photo-upload">
-      <img :src="'http://localhost:3000/img/users/' + user['photo']" alt="User photo"
+      <img :src="hostImgUsers + user['photo']" alt="User photo"
            class="form__user-photo"/>
       <input id="photo" ref="photo" accept="image/*" class="form__upload" name="photo" type="file" @change="setPhoto"/>
       <label for="photo">Choose new photo</label>
@@ -62,7 +62,7 @@ export default {
   name: "updateUserDetailsForm",
   components: {HalfCircleSpinner},
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user', 'hostImgUsers'])
   },
   data() {
     return {

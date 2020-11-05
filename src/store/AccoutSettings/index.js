@@ -1,6 +1,9 @@
 import Vue from 'vue'
 
-const state = {}
+const state = {
+  hostImgTours: 'https://airbnb-tours-api.herokuapp.com/img/tours/',
+  hostImgUsers: 'https://airbnb-tours-api.herokuapp.com/img/users/',
+}
 const mutations = {}
 const actions = {
   async updateDetails({commit}, userDetails) {
@@ -13,7 +16,10 @@ const actions = {
     }
   }
 }
-const getters = {}
+const getters = {
+  hostImgTours: state => state.hostImgTours,
+  hostImgUsers: state => state.hostImgUsers
+}
 
 const accoutsettingsModule = {
   state,
