@@ -40,7 +40,7 @@ const actions = {
   },
   async logout({commit}) {
     try {
-      Vue.$cookies.remove('jwthandp')
+      await axios.get('/users/logout')
       await commit('UPDATE_USER', null)
       await commit('UPDATE_LOGGED_IN', null)
       Vue.$toast.info('Logout Successful')
