@@ -27,12 +27,13 @@ const actions = {
   },
   async passwordChange({commit}, user) {
     try {
-      const response = await axios.post('/users/update-password', user)
+      const response = await axios.patch('/users/update-password', user)
       commit('UPDATE_USER', 'success')
       console.log(response)
 
 
     } catch (e) {
+      console.log('from password change', e.response)
       return Vue.$toast.error(e.response.data.message)
       // commit('UPDATE_USER', e.response.data.message)
     }

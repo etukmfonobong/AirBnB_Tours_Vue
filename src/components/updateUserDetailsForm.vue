@@ -35,11 +35,11 @@
            class="form__user-photo"/>
       <input id="photo" ref="photo" accept="image/*" class="form__upload" name="photo" type="file" @change="setPhoto"/>
       <label for="photo">Choose new photo</label>
-
+      <p class="px-3 pt-2">{{ displayFileName }}</p>
 
     </div>
     <div class="form__group right">
-      <button :disabled="DetailsForm.submitting" class="btn btn--small btn--green">
+      <button :disabled="DetailsForm.submitting" class="btn btn--small btn--green" @click="handleDetailsUpdate">
                 <span v-if="DetailsForm.submitting === true" class="paddingLoad">
                   <half-circle-spinner
                       :animation-duration="1000"
@@ -66,6 +66,7 @@ export default {
   },
   data() {
     return {
+      displayFileName: null,
       DetailsForm: {
         name: null,
         email: null,
@@ -92,14 +93,17 @@ export default {
   methods: {
     setPhoto() {
       this.DetailsForm.photo = this.$refs.photo.files[0]
+      this.displayFileName = this.$refs.photo.files[0].name
     },
     setInitialState() {
       this.DetailsForm.name = this.user.name
       this.DetailsForm.email = this.user.email
       this.DetailsForm.photo = this.user.photo
+      this.displayFileName = 'no file selected'
     },
     handleDetailsUpdate() {
-      if (this.$v.DetailsForm.$anyDirty && !this.$v.DetailsForm.$invalid) {
+      // if (this.$v.DetailsForm.$anyDirty && !this.$v.DetailsForm.$invalid) {
+      if (!this.$v.DetailsForm.$invalid) {
         console.log('form submitted')
         this.DetailsForm.submitting = true
 
