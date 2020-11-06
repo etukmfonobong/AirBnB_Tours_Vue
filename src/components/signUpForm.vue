@@ -33,7 +33,7 @@
       <!--      password-->
       <div class="form__group ma-bt-md">
         <label class="form__label" for="password">Password</label>
-        <input id="password" v-model.lazy="$v.loginForm.password.$model" autocomplete="current-password"
+        <input id="password" v-model.lazy="$v.loginForm.password.$model"
                class="form__input"
                minlength="10"
                placeholder="••••••••" required="required" type="password"/>
@@ -142,7 +142,8 @@ export default {
             .dispatch("signUp", {
               name: this.loginForm.name,
               email: this.loginForm.email,
-              password: this.loginForm.password
+              password: this.loginForm.password,
+              passwordConfirm: this.loginForm.passwordConfirm
             }).then(async () => {
           if (this.user === 'success') {
             await this.$store.dispatch('getUser')
