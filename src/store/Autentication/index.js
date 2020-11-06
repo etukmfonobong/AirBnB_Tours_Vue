@@ -38,6 +38,32 @@ const actions = {
       // commit('UPDATE_USER', e.response.data.message)
     }
   },
+  async getPasswordChangeLink({commit}, user) {
+    try {
+      const response = await axios.post('/users/forgot-password', user)
+      Vue.$toast.success('Reset link has been sent!')
+      console.log(response)
+
+
+    } catch (e) {
+      return Vue.$toast.error(e.response.data.message)
+      // commit('UPDATE_USER', e.response.data.message)
+    }
+  },
+  async resetPassword({commit}, user) {
+    const {password, passwordConfirm, resetToken} = user
+    try {
+      const response = await axios.patch(`/users/reset-password/${resetToken}`, {password, passwordConfirm})
+      Vue.$toast.success('Password has been reset!')
+      console.log(response)
+
+
+    } catch (e) {
+      console.log(e.response)
+      return Vue.$toast.error(e.response.data.message)
+      // commit('UPDATE_USER', e.response.data.message)
+    }
+  },
   async signUp({commit}, user) {
     try {
       const response = await axios.post('/users/signup', user)

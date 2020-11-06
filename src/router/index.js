@@ -4,11 +4,13 @@ import Home from '@/views/Home.vue'
 import Tour from '@/views/Tour.vue'
 import Login from "@/views/Login";
 import SignUp from "@/views/SignUp";
+import forgotPassword from "@/views/forgotPassword";
 import store from "@/store"
 import Error from "@/views/Error";
 import Settings from "@/views/Settings";
 import userAccountSettings from "@/components/userAccountSettings";
 import userBookingSettings from "@/components/userBookingSettings";
+import resetPassword from "@/views/resetPassword";
 
 Vue.use(VueRouter)
 
@@ -26,6 +28,25 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/forgot-password',
+    name: 'forgotPassword',
+    component: forgotPassword,
+    beforeEnter: async (to, from, next) => {
+      if (store.getters.loggedIn) next('/home');
+      else next();
+    }
+  },
+  {
+    path: '/reset-password/:resetToken',
+    name: 'resetPassword',
+    props: true,
+    component: resetPassword,
+    beforeEnter: async (to, from, next) => {
+      if (store.getters.loggedIn) next('/home');
+      else next();
+    }
   },
   {
     path: '/tour/:tourId',
@@ -48,7 +69,6 @@ const routes = [
     name: 'SignUp',
     component: SignUp,
     beforeEnter: async (to, from, next) => {
-
       if (store.getters.loggedIn) next('/home');
       else next();
     }

@@ -6,14 +6,14 @@
           placeholder="••••••••"
           required="required"
           type="password"/>
-    </div>
-    <!--    form errors-->
-    <div v-if="$v.PassForm.currentPassword.$invalid  && $v.PassForm.currentPassword.$dirty">
-      <div v-if="!$v.PassForm.currentPassword.required" class="vuelidate-error e-margin">Please input your Current
-        Password
-      </div>
-      <div v-if="!$v.PassForm.currentPassword.minLength" class="vuelidate-error e-margin">Your password should be at
-        least 10 characters long
+      <!--    form errors-->
+      <div v-if="$v.PassForm.currentPassword.$invalid  && $v.PassForm.currentPassword.$dirty">
+        <div v-if="!$v.PassForm.currentPassword.required" class="vuelidate-error e-margin">Please input your Current
+          Password
+        </div>
+        <div v-if="!$v.PassForm.currentPassword.minLength" class="vuelidate-error e-margin">Your password should be at
+          least 10 characters long
+        </div>
       </div>
     </div>
     <div class="form__group"><label class="form__label" for="password">New password</label>
@@ -22,14 +22,14 @@
           placeholder="••••••••"
           required="required"
           type="password"/>
-    </div>
-    <!--    form errors-->
-    <div v-if="$v.PassForm.newPassword.$invalid  && $v.PassForm.newPassword.$dirty">
-      <div v-if="!$v.PassForm.newPassword.required" class="vuelidate-error e-margin">Please input your New
-        Password
-      </div>
-      <div v-if="!$v.PassForm.newPassword.minLength" class="vuelidate-error e-margin">Your password should be at
-        least 10 characters long
+      <!--    form errors-->
+      <div v-if="$v.PassForm.newPassword.$invalid  && $v.PassForm.newPassword.$dirty">
+        <div v-if="!$v.PassForm.newPassword.required" class="vuelidate-error e-margin">Please input your New
+          Password
+        </div>
+        <div v-if="!$v.PassForm.newPassword.minLength" class="vuelidate-error e-margin">Your password should be at
+          least 10 characters long
+        </div>
       </div>
     </div>
     <div class="form__group ma-bt-lg"><label class="form__label" for="password-confirm">Confirm
@@ -39,17 +39,17 @@
           placeholder="••••••••"
           required="required"
           type="password"/>
-    </div>
-    <!--    form errors-->
-    <div v-if="$v.PassForm.confirmPassword.$invalid  && $v.PassForm.confirmPassword.$dirty">
-      <div v-if="!$v.PassForm.confirmPassword.required" class="vuelidate-error e-margin">Please confirm your new
-        Password
-      </div>
-      <div v-if="!$v.PassForm.confirmPassword.minLength" class="vuelidate-error e-margin">Your password should be at
-        least 10 characters long
-      </div>
-      <div v-if="!$v.PassForm.confirmPassword.sameAsPassword" class="vuelidate-error e-margin">Your New password does
-        not match this field
+      <!--    form errors-->
+      <div v-if="$v.PassForm.confirmPassword.$invalid  && $v.PassForm.confirmPassword.$dirty">
+        <div v-if="!$v.PassForm.confirmPassword.required" class="vuelidate-error e-margin">Please confirm your new
+          Password
+        </div>
+        <div v-if="!$v.PassForm.confirmPassword.minLength" class="vuelidate-error e-margin">Your password should be at
+          least 10 characters long
+        </div>
+        <div v-if="!$v.PassForm.confirmPassword.sameAsPassword" class="vuelidate-error e-margin">Your New password does
+          not match this field
+        </div>
       </div>
     </div>
 
@@ -118,13 +118,13 @@ export default {
             .dispatch("passwordChange", {
               password: this.PassForm.currentPassword,
               newPassword: this.PassForm.newPassword,
-              passwordConfirm: this.PassForm.confirmPassword,
+              passwordConfirm: this.PassForm.confirmPassword
             }).then(async () => {
           if (this.user === 'success') {
             await this.$store.dispatch('logout')
 
             await router.push({name: 'Login'})
-            await this.$toast.success('Password changed successfully. Please login again')
+            await this.$toast.success('Password was changed successfully, please login again! ')
 
           }
           this.PassForm.submitting = false

@@ -45,6 +45,9 @@
         </button>
       </div>
     </form>
+    <div class="d-flex py-5 ml-2">
+      <router-link :to="{name:'forgotPassword'}" class="font-weight-bolder ml-2">Forgot Password ?</router-link>
+    </div>
   </div>
 </template>
 
