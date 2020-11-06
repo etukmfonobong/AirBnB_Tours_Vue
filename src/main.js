@@ -27,8 +27,8 @@ import './assets/css/custom.css'
 
 
 Vue.use(VueToast, {
-  position: 'top',
-  duration: 5000
+  position: 'top-right',
+  duration: 4500
 });
 
 //Vue-headful component setup

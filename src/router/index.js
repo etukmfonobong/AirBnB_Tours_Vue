@@ -3,12 +3,12 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import Tour from '@/views/Tour.vue'
 import Login from "@/views/Login";
+import SignUp from "@/views/SignUp";
 import store from "@/store"
 import Error from "@/views/Error";
 import Settings from "@/views/Settings";
 import userAccountSettings from "@/components/userAccountSettings";
 import userBookingSettings from "@/components/userBookingSettings";
-import includes from "validator/es/lib/util/includes";
 
 Vue.use(VueRouter)
 
@@ -44,6 +44,16 @@ const routes = [
     }
   },
   {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: SignUp,
+    beforeEnter: async (to, from, next) => {
+
+      if (store.getters.loggedIn) next('/home');
+      else next();
+    }
+  },
+  {
     path: '/settings',
     name: 'Settings',
     component: Settings,
@@ -62,7 +72,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/home'
   },
   {
     path: '*',

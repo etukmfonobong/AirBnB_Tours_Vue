@@ -25,6 +25,30 @@ const actions = {
       // commit('UPDATE_USER', e.response.data.message)
     }
   },
+  async passwordChange({commit}, user) {
+    try {
+      const response = await axios.post('/users/update-password', user)
+      commit('UPDATE_USER', 'success')
+      console.log(response)
+
+
+    } catch (e) {
+      return Vue.$toast.error(e.response.data.message)
+      // commit('UPDATE_USER', e.response.data.message)
+    }
+  },
+  async signUp({commit}, user) {
+    try {
+      const response = await axios.post('/users/signup', user)
+      commit('UPDATE_USER', 'success')
+      console.log(response)
+
+
+    } catch (e) {
+      return Vue.$toast.error(e.response.data.message)
+      // commit('UPDATE_USER', e.response.data.message)
+    }
+  },
   async getUser({commit}) {
     try {
       const response = await axios.get('/users/get-me')
