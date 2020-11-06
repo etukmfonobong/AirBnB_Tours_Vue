@@ -85,8 +85,8 @@ const actions = {
 
     } catch (e) {
       console.log(e)
-      await commit('UPDATE_LOGGED_IN', false)
-      return Vue.$toast.error('failed to get user')
+      return await commit('UPDATE_LOGGED_IN', false)
+      // return Vue.$toast.error('failed to get user')
     }
   },
   async logout({commit}) {

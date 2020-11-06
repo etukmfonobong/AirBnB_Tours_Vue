@@ -27,7 +27,7 @@ import './assets/css/custom.css'
 
 
 Vue.use(VueToast, {
-  position: 'top-right',
+  position: 'top',
   duration: 4500
 });
 
