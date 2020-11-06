@@ -4,6 +4,8 @@ const stripe = Stripe('pk_test_51Hif9CHAjx0zWyRxeUy0u4ZlOgm4YtlojjWVhiYonjj1NXbC
 const state = {
   tours: null,
   toursLoading: true,
+  bookings: null,
+  bookingsLoading: true,
   currentTour: null,
   currentTourLoading: null
 }
@@ -13,6 +15,12 @@ const mutations = {
   },
   UPDATE_TOURS_LOADING(state, payload) {
     state.toursLoading = payload;
+  },
+  UPDATE_BOOKINGS(state, payload) {
+    state.bookings = payload;
+  },
+  UPDATE_BOOKINGS_LOADING(state, payload) {
+    state.bookingsLoading = payload;
   },
   UPDATE_CURRENT_TOUR(state, payload) {
     state.currentTour = payload;
@@ -27,6 +35,15 @@ const actions = {
       const response = await axios.get('/tours')
       commit('UPDATE_TOURS', response.data.data["documents"])
       commit('UPDATE_TOURS_LOADING', false)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async getBookings({commit}, userId) {
+    try {
+      const response = await axios.get(`/users/${userId}/bookings`)
+      commit('UPDATE_BOOKINGS', response.data.data["documents"])
+      commit('UPDATE_BOOKINGS_LOADING', false)
     } catch (e) {
       console.log(e)
     }
@@ -65,6 +82,8 @@ const actions = {
 const getters = {
   tours: state => state.tours,
   toursLoading: state => state.toursLoading,
+  bookings: state => state.bookings,
+  bookingsLoading: state => state.bookingsLoading,
   currentTour: state => state.currentTour,
   currentTourLoading: state => state.currentTourLoading
 }

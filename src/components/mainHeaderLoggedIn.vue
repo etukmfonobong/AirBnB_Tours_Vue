@@ -1,6 +1,6 @@
 <template>
   <nav class="nav nav--user">
-    <a class="nav__el" href="#">My bookings</a>
+<!--    <a class="nav__el" href="#">My bookings</a>-->
     <button class="nav__el" @click="handleLogOut">Log Out</button>
     <router-link :to="{name:'Account Settings'}" class="nav__el">
       <img :src="hostImgUsers + user['photo']" alt="User photo" class="nav__user-img"/>
