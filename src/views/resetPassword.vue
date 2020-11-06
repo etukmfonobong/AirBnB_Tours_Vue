@@ -112,13 +112,10 @@ export default {
               passwordConfirm: this.resetPassForm.confirmPassword,
               resetToken: this.resetToken
             }).then(async () => {
-          if (this.user === 'success') {
-            await this.$store.dispatch('logout')
 
-            await router.push({name: 'Login'})
-            await this.$toast.success('Password changed successfully. Please login again')
-
-          }
+          await this.$store.dispatch('logout')
+          await router.push({name: 'Login'})
+          await this.$toast.success('Password changed successfully. Please login again')
           this.resetPassForm.submitting = false
         })
       }
