@@ -33,7 +33,7 @@
       </div>
       <div class="card__footer">
         <p>
-          <span class="card__footer-value">${{ tour['price'] }}</span>
+          <span class="card__footer-value">₦{{ tour['price'] }}</span>
           <span class="card__footer-text">per person</span>
         </p>
         <p class="card__ratings">
